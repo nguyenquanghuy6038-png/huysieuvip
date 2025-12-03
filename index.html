@@ -1,53 +1,259 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Giới thiệu bản thân - Nguyễn Quang Huy</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .profile-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      display: block;
-      margin: 0 auto;
-    }
-    h1 {
-      text-align: center;
-      margin-top: 20px;
-    }
-    .info {
-      margin-top: 20px;
-      line-height: 1.8;
-      font-size: 18px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Nguyễn Quang Huy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-orange: #f27125; /* Màu cam FPT */
+            --dark-text: #2c3e50;
+            --light-bg: #f5f6fa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card-container {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            max-width: 900px;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        /* Phần bên trái (Sidebar) */
+        .left-section {
+            background: linear-gradient(135deg, #f27125, #ff9f43);
+            color: var(--white);
+            width: 35%;
+            padding: 40px 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.4);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .student-id {
+            background-color: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .contact-info {
+            width: 100%;
+            text-align: left;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .contact-item i {
+            width: 30px;
+            font-size: 18px;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        /* Phần bên phải (Nội dung) */
+        .right-section {
+            width: 65%;
+            padding: 40px;
+        }
+
+        .section-title {
+            color: var(--primary-orange);
+            font-size: 20px;
+            font-weight: 700;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-block {
+            margin-bottom: 30px;
+        }
+
+        .content-block p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--dark-text);
+            font-size: 14px;
+        }
+        
+        .info-item span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Skills Tags */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: #eee;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            background-color: var(--primary-orange);
+            color: var(--white);
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                margin-top: 20px;
+            }
+            .left-section, .right-section {
+                width: 100%;
+            }
+            .left-section {
+                padding: 30px 20px;
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img src="/mnt/data/036207015775.jpg" alt="Ảnh hồ sơ" class="profile-img" />
-    <h1>Nguyễn Quang Huy</h1>
-    <div class="info">
-      <p><strong>Mã số sinh viên:</strong> PK04651</p>
-      <p><strong>Trường:</strong> FPT Polytechnic</p>
-      <p><strong>Thành phố:</strong> Buôn Mê Thuột</p>
-      <p><strong>Giới thiệu:</strong> Xin chào! Tôi là sinh viên FPT Polytechnic với niềm đam mê lập trình và công nghệ. Đây là website giới thiệu bản thân.</p>
+
+    <div class="card-container">
+        <div class="left-section">
+            <img src="036207015775.jpg" alt="Nguyễn Quang Huy" class="profile-img">
+            
+            <h1 class="name">Nguyễn Quang Huy</h1>
+            <div class="student-id">MSSV: PK04651</div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-university"></i>
+                    <span>FPT Polytechnic</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>TP. Buôn Ma Thuột</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>huy.nq.pk04651@fpt.edu.vn</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-globe"></i>
+                    <span>Tay Nguyen Campus</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-section">
+            <div class="content-block">
+                <h2 class="section-title">Giới Thiệu</h2>
+                <p>
+                    Xin chào! Mình là sinh viên FPT Polytechnic Tây Nguyên. Với tinh thần học hỏi không ngừng và sự năng động của tuổi trẻ, mình luôn mong muốn áp dụng những kiến thức đã học vào thực tế, đặc biệt là trong lĩnh vực công nghệ và truyền thông đa phương tiện.
+                </p>
+            </div>
+
+            <div class="content-block">
+                <h2 class="section-title">Thông Tin Cá Nhân</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>Ngày sinh:</strong>
+                        <span>20/xx/20xx</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Chuyên ngành:</strong>
+                        <span>Công nghệ thông tin</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Trạng thái:</strong>
+                        <span>Đang theo học</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Sở thích:</strong>
+                        <span>Công nghệ, Đá bóng, Du lịch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <h2 class="section-title">Kỹ Năng</h2>
+                <div class="skills-container">
+                    <span class="skill-tag">Làm việc nhóm</span>
+                    <span class="skill-tag">Tin học văn phòng</span>
+                    <span class="skill-tag">Tiếng Anh cơ bản</span>
+                    <span class="skill-tag">Thuyết trình</span>
+                    <span class="skill-tag">Chỉnh sửa ảnh</span>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
 </body>
 </html>
