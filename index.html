@@ -3,254 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - Nguyễn Quang Huy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>Profile: Nguyễn Quang Huy - PK04651</title>
     <style>
-        :root {
-            --primary-orange: #f27125; /* Màu cam FPT */
-            --dark-text: #2c3e50;
-            --light-bg: #f5f6fa;
-            --white: #ffffff;
-        }
-
+        /* --- CẤU HÌNH RESET CƠ BẢN --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            /* Sửa lỗi đen: Dùng Gradient xanh đen thay vì đen tuyền để dễ nhìn hơn */
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #ffffff; /* Chữ màu trắng tuyệt đối */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
         }
 
-        .card-container {
-            background-color: var(--white);
+        /* --- KHUNG PROFILE (CARD) --- */
+        .profile-card {
+            background-color: rgba(30, 41, 59, 0.8); /* Nền thẻ bán trong suốt */
+            border: 2px solid #38bdf8; /* Viền xanh Neon */
             border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3); /* Hiệu ứng phát sáng */
+            position: relative;
             overflow: hidden;
-            display: flex;
-            max-width: 900px;
-            width: 100%;
-            transition: transform 0.3s ease;
         }
 
-        /* Phần bên trái (Sidebar) */
-        .left-section {
-            background: linear-gradient(135deg, #f27125, #ff9f43);
-            color: var(--white);
-            width: 35%;
-            padding: 40px 30px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* Trang trí nền card */
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
+            z-index: 0;
+            animation: rotate 10s linear infinite;
         }
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
+        /* --- HÌNH ẢNH AVATAR --- */
+        .avatar-container {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .avatar {
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 5px solid rgba(255,255,255,0.4);
+            border: 4px solid #f97316; /* Màu cam FPT */
             object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background-color: #fff; /* Nền trắng dự phòng nếu ảnh lỗi */
         }
 
-        .name {
+        /* --- NỘI DUNG VĂN BẢN --- */
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
             font-size: 24px;
-            font-weight: 700;
+            font-weight: bold;
             margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .student-id {
-            background-color: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 30px;
-        }
-
-        .contact-info {
-            width: 100%;
-            text-align: left;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .contact-item i {
-            width: 30px;
-            font-size: 18px;
-            text-align: center;
-            margin-right: 10px;
-        }
-
-        /* Phần bên phải (Nội dung) */
-        .right-section {
-            width: 65%;
-            padding: 40px;
-        }
-
-        .section-title {
-            color: var(--primary-orange);
-            font-size: 20px;
-            font-weight: 700;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .content-block {
-            margin-bottom: 30px;
-        }
-
-        .content-block p {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 10px;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .info-item strong {
-            display: block;
-            color: var(--dark-text);
+        .subtitle {
+            color: #38bdf8; /* Màu xanh AI */
             font-size: 14px;
-        }
-        
-        .info-item span {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* Skills Tags */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: #eee;
-            color: #333;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 13px;
             font-weight: 600;
-            transition: 0.3s;
+            margin-bottom: 25px;
+            display: block;
         }
 
-        .skill-tag:hover {
-            background-color: var(--primary-orange);
-            color: var(--white);
+        /* --- BẢNG THÔNG TIN --- */
+        .info-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            text-align: left;
         }
 
-        /* Responsive Mobile */
-        @media (max-width: 768px) {
-            .card-container {
-                flex-direction: column;
-                margin-top: 20px;
-            }
-            .left-section, .right-section {
-                width: 100%;
-            }
-            .left-section {
-                padding: 30px 20px;
-            }
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px dashed #475569;
+            font-size: 14px;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .label { color: #94a3b8; }
+        .value { color: #fff; font-weight: bold; }
+        .orange-text { color: #f97316; }
+
+        /* --- FOOTER BẢN QUYỀN --- */
+        .copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #64748b;
+            font-family: monospace;
+            border-top: 1px solid #334155;
+            padding-top: 15px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .copyright span {
+            color: #f97316;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Animation xoay nhẹ nền */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
 
-    <div class="card-container">
-        <div class="left-section">
-            <img src="036207015775.jpg" alt="Nguyễn Quang Huy" class="profile-img">
-            
-            <h1 class="name">Nguyễn Quang Huy</h1>
-            <div class="student-id">MSSV: PK04651</div>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-university"></i>
-                    <span>FPT Polytechnic</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>TP. Buôn Ma Thuột</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>huy.nq.pk04651@fpt.edu.vn</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-globe"></i>
-                    <span>Tay Nguyen Campus</span>
-                </div>
-            </div>
+    <div class="profile-card">
+        <div class="avatar-container">
+            <!-- Thay link ảnh của bạn vào src bên dưới -->
+            <img src="https://via.placeholder.com/150" alt="Nguyễn Quang Huy" class="avatar">
         </div>
 
-        <div class="right-section">
-            <div class="content-block">
-                <h2 class="section-title">Giới Thiệu</h2>
-                <p>
-                    Xin chào! Mình là sinh viên FPT Polytechnic Tây Nguyên. Với tinh thần học hỏi không ngừng và sự năng động của tuổi trẻ, mình luôn mong muốn áp dụng những kiến thức đã học vào thực tế, đặc biệt là trong lĩnh vực công nghệ và truyền thông đa phương tiện.
-                </p>
-            </div>
+        <div class="content">
+            <h1>Nguyễn Quang Huy</h1>
+            <span class="subtitle">Future AI Engineer</span>
 
-            <div class="content-block">
-                <h2 class="section-title">Thông Tin Cá Nhân</h2>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <strong>Ngày sinh:</strong>
-                        <span>20/xx/20xx</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Chuyên ngành:</strong>
-                        <span>Công nghệ thông tin</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Trạng thái:</strong>
-                        <span>Đang theo học</span>
-                    </div>
-                    <div class="info-item">
-                        <strong>Sở thích:</strong>
-                        <span>Công nghệ, Đá bóng, Du lịch</span>
-                    </div>
+            <div class="info-box">
+                <div class="info-row">
+                    <span class="label">MSSV</span>
+                    <span class="value orange-text">PK04651</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Trường</span>
+                    <span class="value">FPT Polytechnic</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Khu vực</span>
+                    <span class="value">Buôn Ma Thuột</span>
+                </div>
+                <div class="info-row">
+                    <span class="label">Công nghệ</span>
+                    <span class="value">AI / Machine Learning</span>
                 </div>
             </div>
 
-            <div class="content-block">
-                <h2 class="section-title">Kỹ Năng</h2>
-                <div class="skills-container">
-                    <span class="skill-tag">Làm việc nhóm</span>
-                    <span class="skill-tag">Tin học văn phòng</span>
-                    <span class="skill-tag">Tiếng Anh cơ bản</span>
-                    <span class="skill-tag">Thuyết trình</span>
-                    <span class="skill-tag">Chỉnh sửa ảnh</span>
-                </div>
+            <div class="copyright">
+                &copy; 2024 Profile Design by<br>
+                <span>huynqpk04651</span>
             </div>
         </div>
     </div>
